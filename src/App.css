@@ -1,38 +1,364 @@
-.App {
-  text-align: center;
+:root {
+  --backgroundcolor: #1e1e1e;
+  --white: #ffffff
+  ;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#root {
+  width: 1440px;
+  height: 953px;
+  background-color: var(--backgroundcolor);
+  color: var(--white);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.mainContainer{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  text-align: center;
+}
+
+.bigTitle{
+  width:auto;
+  height: auto;
+  opacity: 0.8;
+  font-family: "Catamaran", sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: var(--white);
+  margin: 35px 0px 12px 0px;
+}
+.mediumTitle{
+  height: 49px;
+  width: 524px;
+  margin: 0px 458px 30px 458px;
+  opacity: 0.6;
+  font-family: "Raleway", sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.39;
+  letter-spacing: normal;
+  color: var(--white);
+}
+
+.inner-shadow-rectangle {
+  width: 828px;
+  height: 698px;
+  margin-left: 306px;
+  margin-right: 306px;
+  margin-bottom: 63px;
+  border-radius: 10px;
+  box-shadow: inset 0 1px 16px 0 rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  position: relative
+}
+
+.IWE2{
+  width: 107.9px;
+  height: 137.6px;
+  object-fit: contain;
+  z-index: 1;
+  position: absolute;
+  left: 259.8px;
+  top: 156.7px
+}
+
+.divider {
+  position: relative;
+  width: 1px;
+  height: 587px;
+  background: var(--white);
+  margin-top: 41px;
+  margin-bottom: 70px;
+}
+
+.leftbox{
+  width: 300px;
+  height: 586px;
+  margin:  42px 26px 70px 87px;
+}
+.rigthbox{
+  width: 300px;
+  height: 586px;
+  margin:  42px 87px 70px 26px;
+}
+
+.form-group{
+ /*  margin-bottom: 24px; */
+  width: 300px;
+  height: 68px;
+}
+
+.labelUp{
+    width: auto;
+    height: 20px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2;
+    letter-spacing: normal;
+    color: 	rgb(255,255,255,0.26);
+    position: absolute;
+    background-color: var(--backgroundcolor);
+    z-index: 2;
+    text-align: center;
+    left: 461px;
+    padding-left: 3px;
+    padding-right: 2px;
+    margin-top:-12px;
+   
+}
+.labelInput{
+  outline: none !important;
+  width: 300px;
+  height: 42px;
+  padding-left: 20px;
+  opacity: 0.26;
+  border: solid 1px ;
+  border-radius: 5px;
+  border-color: var(--white);
+  background-color: var(--backgroundcolor);
+  z-index: 1;
+  color: var(--white);
+  font-size: 15px;
+}
+.labelInput:focus, .labelInput:hover{
+  outline: none !important;
+  border: solid 1px ;
+  border-radius: 5px;
+  border-color: var(--white);
+  background-color: var(--backgroundcolor);
+  outline:0px !important;
+  -webkit-appearance:none;
+  box-shadow: none !important;
+  opacity: 1;
+  color: var(--white);
+}
+
+.labelUpColor{
+  color: var(--white) !important;
+  opacity: 1 !important;
+}
+
+.labelDown{
+  height: 20px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: normal;
+  color:#8e8e8e;
+  min-width: 300px;
+  padding-left: 19px;
+  text-align: start;
+  line-height: 2;
+  margin-bottom: 0px !important;
+}
+
+::placeholder {
   color: white;
+  padding: 11px 0px 11px;
+  width: auto;
+  height: 20px;
+  font-family: 'Raleway',sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+
 }
 
-.App-link {
-  color: #61dafb;
+.ReactFlagsSelect-module_selectOptions__3LNBJ {
+  background: var(--backgroundcolor) !important;
+  margin-top: 0px !important;
+  position: inherit!important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ReactFlagsSelect-module_selectOptionValue__vS99- {
+  color: var(--white) !important;
+}
+.ReactFlagsSelect-module_selectOptionValue{
+  border-color: white !important
+}
+
+.ReactFlagsSelect-module_selectBtn__19wW7{ /* obrub*/
+ color:var(--white) !important ; 
+ height: 42px !important;
+ width: 300px !important;
+ opacity: 0.26 !important;
+ border-color: var(--white) !important;
+}
+.ReactFlagsSelect-module_flagsSelect__2pfa2 {
+  display: contents !important;
+}
+
+.ReactFlagsSelect-module_selectBtn__19wW7:focus, .ReactFlagsSelect-module_selectBtn__19wW7:hover{
+  color: var(--white) !important ; 
+  opacity: 1 !important;
+  border-color: var(--white) !important;
+ }
+
+ .dragdrop-rectangle {
+  width: 300px;
+  height: 518px;
+  opacity: 0.45;
+  border-radius: 10px;
+  border: solid 1px #bababa;
+  border-style: dashed;
+  margin-bottom: 26px;
+}
+.dragdrop-rectangle:hover {
+  opacity: 1;
+
+}
+
+.send{
+  top:668px; 
+  left:324px;
+  position: absolute;
+  background-color: transparent;
+  border: none !important;
+  padding: 0px !important;
+}
+.btn:hover, .btn:focus, .btn:focus{
+  background-color:transparent !important;
+  box-shadow: none !important;
+}
+
+.upload{
+  width: 91px;
+  height: 75px;
+  position: static;
+  margin: 140px 105px 0px 104px;
+  color: var(--white);
+  opacity: 1 !important;
+}
+.uploadDrop{
+  width: 100px;
+  height: 83px;
+  margin: 136px 100px 0px 100px; 
+  z-index: 3
+}
+
+.dropText{
+  font-size: 20px;
+  margin-top: 150px;
+  width: 150px;
+  height: 20px;
+  margin: 66px 75px 0px 75px;
+  font-family: "Raleway",sans-serif;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  color: var(--white);
+  z-index: 3;
+}
+
+.hr{
+  width: 125px;
+  height: 2px !important;; 
+  color: var(--white)!important;
+  border: 20px;
+  margin: 2px!important;
+  padding-left: 36px;
+  display: -webkit-inline-box;
+}
+.documentPhoto{
+  width: 156.5px;
+  height: 229.6px;
+  margin: 40px 71.5px 0px 72px;
+  object-fit: contain;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
+}
+
+.fileTitle{
+  width: 142px;
+  height: 20px;
+  margin: 10.4px 79px 0px 79px;
+  font-family: "Raleway",sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: italic;
+  line-height: 1.67;
+  letter-spacing: normal;
+  color: var(--white);
+}
+.uploadTextDown{
+  font-size: 15px;
+  line-height: 20px;
+  margin: 94px 52px 0px;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: 953px;
+  background-color: hsl(0, 0%, 0%, 0.85);
+  z-index: 50;
+  display: table;
+}
+
+.success-icon {
+ /*  width: 128px;
+  height: 128px;
+  margin: 153.5px 0px 30.5px 0px;
+  object-fit: contain;
+  padding: 0px 656px 0px 656px; */
+  width: 128px;
+    height: 128px;
+    margin: 153.5px 656px 0px 656px;
+  opacity: 1;
+}
+
+.successApply {
+  width: inherit;
+    height: 61px;
+    margin: 30.5px 0px 20px 0px;
+    text-align: center;
+    font-family: 'Catamaran', sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: var(--white);
+}
+
+.modalSmallText {
+  width: 500px;
+  margin: 20px 470px 0px;
+  font-family: 'Raleway',sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #bababa;
+  text-align: -webkit-center;
+}
+
+.modalButton {
+  width: 180px;
+  height: 60px;
+  margin: 26px 630px 0;
+  object-fit: contain;
 }

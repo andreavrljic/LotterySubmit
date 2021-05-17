@@ -4,24 +4,21 @@ import countryList from 'react-select-country-list'
 import Form from 'react-bootstrap/Form'
 
 const Select = props => {
-    const [selected] = useState("HR");
-    const [labelColor, setlabelColor] = useState("");
+    const [selected, setSelected] = useState("HR");
 
     const countries = countryList().getValues();
     return (
         <Form className="form">
-            <Form.Label className={"labelUp " + labelColor} >{props.labelName}</Form.Label>
-            <Form.Group className="form-group"
-                onMouseEnter={() => setlabelColor("labelUpColor")}
-                onMouseLeave={() => setlabelColor("")}>
+
+            <Form.Group className="form-group">
                 <ReactFlagsSelect
                     className="labelInput"
                     selected={selected}
-                    onSelect={props.onSelect}
+                    onSelect={code => { props.onSelect(code); setSelected(code) }}
                     countries={countries}
                     placeholder="Odaberi zemlju"
                 />
-
+                <Form.Label className={"labelUp"} >{props.labelName}</Form.Label>
             </Form.Group>
         </Form>
     );

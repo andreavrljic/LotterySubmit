@@ -2,12 +2,12 @@ import React from 'react'
 
 class Divtext extends React.Component {
 
-    render(){
+    render() {
         return (
             <p className={`${this.props.className} textCenter`}>
-                 {this.props.text}
+                {this.props.text}
             </p>
         )
     }
 
-}export default Divtext
+} export default Divtext

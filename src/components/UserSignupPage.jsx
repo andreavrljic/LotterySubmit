@@ -8,7 +8,8 @@ import UploadBox from './UploadBox';
 import Send from '../button.svg'
 import { Modal } from './Modal'
 import Button from 'react-bootstrap/Button'
-import axios from 'axios'
+import axios from 'axios';
+import Form from 'react-bootstrap/Form'
 
 class UserSignupPage extends React.Component {
 
@@ -22,23 +23,60 @@ class UserSignupPage extends React.Component {
                 houseNumber: '',
                 town: '',
                 postalCode: '',
-                country: '',
+                country: 'HR',
                 phone: '',
                 eMail: '',
                 account: '',
+                photo: ''
             },
             mainTitle: "Prijava na Enterwell nagradnu igru!",
             subtitle: `U ovoj igri svi dobivamo! Ti ćeš izraditi ovu cool formu, a mi \n ćemo imati priliku vidjeti tvoje zlatne linije koda`,
             opacity: 0.26,
             show: false,
             success: false,
-            validate:false
+            empty: true,
+            uploadSucces: false,
+            submit: false,
         };
 
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
+        this.requiredFiled = this.requiredFiled.bind(this);
+        this.onClick = this.onClick.bind(this);
+        this.entryGame = this.entryGame.bind(this);
+        this.setDocumentName = this.setDocumentName.bind(this);
+
+    }
+
+    entryGame = () => {
+        console.log("entry")
+        fetch('http://localhost/enterwell/create-account.php', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: {
+                account: this.state.newPlayer,
+                name: this.state.newPlayer,
+                surname: this.state.newPlayer,
+                address: this.state.newPlayer.address,
+                houseNumber: this.state.newPlayer.houseNumber,
+                town: this.state.newPlayer.town,
+                postalCode: this.state.newPlayer.postalCode,
+                country: this.state.newPlayer.country,
+                phone: this.state.newPlayer.phone,
+                eMail: this.state.newPlayer.eMail,
+                photo: this.state.newPlayer.photo
+            }
+        }).then((response) => response.json())
+            .then((responseJson) => {
+                console.log("resoi", responseJson);
+            }).catch((error) => {
+                console.error(error);
+            });
+
     }
 
     handleChange = (event, fieldName) => {
@@ -49,10 +87,11 @@ class UserSignupPage extends React.Component {
                     ...prevState.newPlayer,
                     [fieldName]: value
                 }
+
             })
         )
     }
-    
+
     showModal = () => {
         this.setState({ show: true });
     };
@@ -67,70 +106,43 @@ class UserSignupPage extends React.Component {
 
     requiredFiled = () => {
 
+        return this.state.newPlayer.name &&
+            this.state.newPlayer.surname &&
+            this.state.newPlayer.address &&
+            this.state.newPlayer.houseNumber &&
+            this.state.newPlayer.town &&
+            this.state.newPlayer.postalCode &&
+            this.state.newPlayer.country &&
+            this.state.newPlayer.phone &&
+            this.state.newPlayer.eMail &&
+            this.state.newPlayer.account &&
+            this.state.newPlayer.photo ? false : true
     }
-    onClick = () =>{
-        this.requiredFiled(); 
+
+    onClick = () => {
         this.showModal();
-
-    }
-    /* handleSubmit = (event) => {
-      const form = event.currentTarget;
-      if (form.checkValidity() === false) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-  
-      this.setState({
-          validate:true
-      })
-    }; */
-
-    getWPnonce =() =>{
-
-        
-
-        axios.get('http://localhost:3000/')
-        .then(res => {
-            console.log(res)
-        }).catch(error =>{
-            console.log(error.response)
-        })
-
-        axios.put('http://localhost:3000/',{
-              firstName: 'Finn',
-              lastName: 'Williams'
-            }).then((response) => {console.log(response)
-            }).catch(error =>{
-                console.log(error.response)
-            });
+        this.entryGame();
     }
 
 
     handleSubmit = (event) => {
-        console.log("dd",event)
-        this.getWPnonce();
+
         event.preventDefault();
-        
     }
 
-    /* handleSubmit = (event) => {
-        alert('A form was submitted: ' + this.state);
-    
-        fetch('https://your-node-server-here.com/api/endpoint', {
-            method: 'POST',
-            // We convert the React state to JSON and send it as the POST body
-            body: JSON.stringify(this.state)
-          }).then(function(response) {
-            console.log("rrr", response)
-            return response.json();
-          });
-    
-        event.preventDefault();
-    } */
+    setDocumentName = (name, success) => {
+        this.setState(prevState => ({
+            newPlayer: {
+                ...prevState.newPlayer,
+                photo: name
+            },
+            uploadSucces: success
+
+        }))
+    }
 
 
     render() {
-        console.log(this.state.newPlayer)
         const data = this.state;
         return (
             <div className="mainContainer" >
@@ -138,14 +150,16 @@ class UserSignupPage extends React.Component {
                 <Divtext className="mediumTitle" text={data.subtitle} />
                 <img src={Ilove1} className="IWE2" alt="" />
                 <div className="inner-shadow-rectangle">
-                    <div className="leftbox">
-                        <UploadBox />
+                    <div className="leftbox" >
+                        <UploadBox documentName={this.setDocumentName} />
+                        {this.state.newPlayer.photo == "Prijenos nije uspio" ? <Form.Label className="labelDrop">{"*Format nije podržan"}</Form.Label> : null}
                         <Input
                             name="account"
                             labelUp={false}
                             placeholder="Broj računa*"
                             value={this.state.newPlayer.account}
                             onChange={event => this.handleChange(event, "account")}
+                            empty={this.state.empty}
                         />
                     </div>
                     <div className="divider"></div>
@@ -156,6 +170,7 @@ class UserSignupPage extends React.Component {
                             labelName="Ime*"
                             value={this.state.newPlayer.name}
                             onChange={event => this.handleChange(event, "name")}
+                            empty={this.state.empty}
                         />
                         <Input
                             name="surname"
@@ -165,6 +180,7 @@ class UserSignupPage extends React.Component {
                             labelDownText="*Obavezno"
                             value={this.state.newPlayer.surname}
                             onChange={event => this.handleChange(event, "surname")}
+                            empty={this.state.empty}
                         />
                         <Input
                             name="address"
@@ -172,6 +188,7 @@ class UserSignupPage extends React.Component {
                             placeholder="Adresa*"
                             value={this.state.newPlayer.address}
                             onChange={event => this.handleChange(event, "address")}
+                            empty={this.state.empty}
                         />
                         <Input
                             name="houseNumber"
@@ -179,6 +196,7 @@ class UserSignupPage extends React.Component {
                             placeholder="Kućni broj*"
                             value={this.state.newPlayer.houseNumber}
                             onChange={event => this.handleChange(event, "houseNumber")}
+                            empty={this.state.empty}
                         />
                         <Input
                             name="town"
@@ -188,6 +206,7 @@ class UserSignupPage extends React.Component {
                             labelDownText="*Obavezna ispuna polja"
                             value={this.state.newPlayer.town}
                             onChange={event => this.handleChange(event, "town")}
+                            empty={this.state.empty}
                         />
                         <Input
                             name="postalCode"
@@ -195,6 +214,7 @@ class UserSignupPage extends React.Component {
                             placeholder="Poštanski broj*"
                             value={this.state.newPlayer.postalCode}
                             onChange={event => this.handleChange(event, "postalCode")}
+                            empty={this.state.empty}
                         />
                         <Select
                             name="country"
@@ -202,6 +222,7 @@ class UserSignupPage extends React.Component {
                             labelName="Država*"
                             handleChange={this.handleInput}
                             onSelect={event => this.handleChange(event, "country")}
+                            empty={this.state.empty}
                         />
                         <Input
                             name="phone"
@@ -209,6 +230,7 @@ class UserSignupPage extends React.Component {
                             placeholder="Kontakt telefon*"
                             value={this.state.newPlayer.phone}
                             onChange={event => this.handleChange(event, "phone")}
+                            empty={this.state.empty}
                         />
                         <Input
                             name="eMail"
@@ -216,19 +238,20 @@ class UserSignupPage extends React.Component {
                             placeholder="E-mail*"
                             value={this.state.newPlayer.eMail}
                             onChange={event => this.handleChange(event, "eMail")}
+                            empty={this.state.empty}
                         />
                     </div>
                     <form ref="form" onSubmit={this.handleSubmit}>
-                    <Button type="submit" className="send" onClick = { this.onClick }>
-                         <img src={Send}/>
-                    </Button>
-                    </form> 
+                        <Button type="submit" className="send" disabled={this.requiredFiled()} onClick={this.onClick}>
+                            <img src={Send} />
+                        </Button>
+                    </form>
                 </div>
                 {this.state.show ?
-                    <Modal show={this.state.show} handleClose={this.hideModal} success = {this.checkSumbitInfo()}>
+                    <Modal show={this.state.show} handleClose={this.hideModal} success={this.state.uploadSucces}>
                     </Modal> : null
                 }
-                
+
             </div>
 
         )

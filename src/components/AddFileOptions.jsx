@@ -21,14 +21,14 @@ const AddFileOptions = props => {
                     <div className={props.case}>
                         <img src={Upload} className={"uploadDrop"} alt="" />
                         <p className="dropText">Ispusti datoteku</p>
-                        <p style={{ fontSize: "12px", lineHeight: "16px", marginTop: "158px" }}>
+                        <p style={{ fontSize: "12px", lineHeight: "16px", marginTop: "158px", color: "var(--whiteOpacity)" }}>
                             PODRŽANI FORMATI <br />pdf, png, jpg</p>
                     </div>
                 )
             case 'uploading':
                 return (
                     <div className={props.case}>
-                        <img src={props.success ? DocumentOk : DocumentError} className={"documentPhoto"} alt= ""/>
+                        <img src={props.success ? DocumentOk : DocumentError} className={"documentPhoto"} alt="" />
                         <p className="fileTitle">{props.fileName}</p>
 
                         <p className="uploadTextDown">Povuci i ispusti datoteku kako bi započeo prijenos <br /> <br />ili <b>pretraži računalo</b></p>

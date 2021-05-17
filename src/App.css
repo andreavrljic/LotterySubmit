@@ -1,6 +1,8 @@
 :root {
   --backgroundcolor: #1e1e1e;
-  --white: #ffffff
+  --white: #ffffff; 
+  --red: #d9452d;
+  --whiteOpacity: rgb(255,255,255,0.26);
   ;
 }
 
@@ -91,7 +93,6 @@
 }
 
 .form-group{
- /*  margin-bottom: 24px; */
   width: 300px;
   height: 68px;
 }
@@ -106,7 +107,7 @@
     font-style: normal;
     line-height: 2;
     letter-spacing: normal;
-    color: 	rgb(255,255,255,0.26);
+    color: 	var(--whiteOpacity);
     position: absolute;
     background-color: var(--backgroundcolor);
     z-index: 2;
@@ -114,7 +115,7 @@
     left: 461px;
     padding-left: 3px;
     padding-right: 2px;
-    margin-top:-12px;
+    margin-top:-54px;
    
 }
 .labelInput{
@@ -144,11 +145,39 @@
   color: var(--white);
 }
 
-.labelUpColor{
-  color: var(--white) !important;
-  opacity: 1 !important;
+.labelInput:hover ~ .labelUp{
+  color: var(--white);
+  border-color: var(--white);
+  opacity: 1;
 }
 
+
+.labelInput[value=""]:focus, 
+.labelInput[value=""]:focus ~ .labelUp, 
+.labelInput[value=""]:focus ~ .labelDown{
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.labelInput:not([value=""]), .labelInput:not([value=""])~ .labelUp {
+  border-color: var(--whiteOpacity);
+  color: var(--white);
+}
+
+.labelInput:not([value=""]):focus, .labelInput:not([value=""]):focus~ .labelUp {
+  border-color: var(--white);
+  color: var(--white);
+}
+.labelInput:not([value=""]):hover, .labelInput:not([value=""]):hover~ .labelUp {
+  border-color: var(--white);
+  color: var(--white);
+}
+
+.labelInput ~ .labelUp, .labelInput{
+  color: var(--whiteOpacity);
+  border-color: var(--whiteOpacity);
+  opacity: 1;
+}
 .labelDown{
   height: 20px;
   font-family: 'Raleway', sans-serif;
@@ -180,11 +209,26 @@
   letter-spacing: normal;
 
 }
+.labelDrop{
+  position: absolute;
+    top: 558px;
+    left: 107px;
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2;
+    letter-spacing: normal;
+    color: #d9452d;
+    line-height: 20px;
+    font-size: 10px;
+}
 
 .ReactFlagsSelect-module_selectOptions__3LNBJ {
   background: var(--backgroundcolor) !important;
   margin-top: 0px !important;
-  position: inherit!important;
+  left: 441px !important;
+  max-width: 300px;
 }
 
 .ReactFlagsSelect-module_selectOptionValue__vS99- {
@@ -195,12 +239,19 @@
 }
 
 .ReactFlagsSelect-module_selectBtn__19wW7{ /* obrub*/
- color:var(--white) !important ; 
- height: 42px !important;
- width: 300px !important;
- opacity: 0.26 !important;
- border-color: var(--white) !important;
-}
+  color: var(--white) !important ; 
+  height: 42px !important;
+  width: 300px !important;
+  border-color: var(--whiteOpacity) !important;
+  font-size: 15px !important;
+  font-family: "Relaway",sans-serif !important;
+  width: 62px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  }
 .ReactFlagsSelect-module_flagsSelect__2pfa2 {
   display: contents !important;
 }
@@ -211,7 +262,7 @@
   border-color: var(--white) !important;
  }
 
- .dragdrop-rectangle {
+.dragdrop-rectangle {
   width: 300px;
   height: 518px;
   opacity: 0.45;
@@ -219,10 +270,10 @@
   border: solid 1px #bababa;
   border-style: dashed;
   margin-bottom: 26px;
+  z-index: 60;
 }
 .dragdrop-rectangle:hover {
-  opacity: 1;
-
+  opacity: 1;  
 }
 
 .send{
@@ -233,9 +284,15 @@
   border: none !important;
   padding: 0px !important;
 }
-.btn:hover, .btn:focus, .btn:focus{
+.btn:hover, .btn:focus{
   background-color:transparent !important;
   box-shadow: none !important;
+}
+
+.btn:disabled{
+  box-shadow: none !important;
+  opacity: 1 !important;
+  background-color:transparent !important;
 }
 
 .upload{
@@ -316,14 +373,9 @@
 }
 
 .success-icon {
- /*  width: 128px;
-  height: 128px;
-  margin: 153.5px 0px 30.5px 0px;
-  object-fit: contain;
-  padding: 0px 656px 0px 656px; */
   width: 128px;
-    height: 128px;
-    margin: 153.5px 656px 0px 656px;
+  height: 128px;
+  margin: 153.5px 656px 0px 656px;
   opacity: 1;
 }
 
